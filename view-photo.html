@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Viewer</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        #fullPhoto {
+            max-width: 90%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 6px;
+        }
+
+        .photo-description {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 15px;
+            background: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .back-link {
+            display: block;
+            margin: 30px auto;
+            width: fit-content;
+            background: #6c757d;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .back-link:hover {
+            background: #5a6268;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // Extract ALL fields from URL
+            const params = new URLSearchParams(window.location.search);
+
+            const imgSrc = decodeURIComponent(params.get("src"));
+            const imgTitle = decodeURIComponent(params.get("title"));
+            const imgLocation = decodeURIComponent(params.get("location"));
+            const imgDescription = decodeURIComponent(params.get("description"));
+
+            // Fill elements
+            document.getElementById("fullPhoto").src = imgSrc;
+            document.getElementById("photoTitle").innerText = imgTitle;
+            document.getElementById("photoLocation").innerText = imgLocation;
+            document.getElementById("photoDescription").innerText = imgDescription;
+
+            // Determine return link
+            let backLink = document.getElementById("backToAlbumLink");
+
+            // Try to return to previous page
+            if (document.referrer && 
+                !document.referrer.includes("view-photo.html")) 
+            {
+                backLink.href = document.referrer;
+            } 
+            else {
+                backLink.href = "index.html";
+            }
+
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="photo-view-container">
+
+        <h2 id="photoTitle"></h2>
+        <p id="photoLocation"></p>
+
+        <img id="fullPhoto" src="" alt="Selected Photo">
+
+        <div id="photoDescription" class="photo-description"></div>
+
+        <a id="backToAlbumLink" class="back-link">&leftarrow; Back to Album</a>
+
+    </div>
+
+</body>
+</html>
