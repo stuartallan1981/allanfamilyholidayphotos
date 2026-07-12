@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Angeles Holiday Photos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Top Navigation Menu Styles matching index.html */
+        .top-nav {
+            display: flex;
+            justify-content: flex-end; /* Pushes the Contact link cleanly to the right */
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 500;
+            font-size: 1.05em;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const S3_BASE_URL = 'https://s3.eu-west-2.amazonaws.com/www.allanfamilyholidayphotos.com/';
+
+            const photosForThisPage = [
+                { 
+                    path: 'photos/Los_Angeles/Hollywood.jpg', 
+                    title: 'Hollywood Sign', 
+                    location: 'Los Angeles, USA', 
+                    description: 'The Hollywood sign from the hotel in Hollywood'
+                },
+                { 
+                    path: 'photos/Los_Angeles/WOF1.jpg', 
+                    title: 'Walk of Fame', 
+                    location: 'Los Angeles, USA',
+                    description: 'Hollywood Walk of Fame Star'
+                },
+                { 
+                    path: 'photos/Los_Angeles/WOF2.jpg', 
+                    title: 'Walk of Fame', 
+                    location: 'Los Angeles, USA', 
+                    description: 'Walk of Fame stars on Hollywood Blvd'
+                },
+                { 
+                    path: 'photos/Los_Angeles/WOF3.jpg', 
+                    title: 'Walk of Fame', 
+                    location: 'Los Angeles, USA', 
+                    description: 'The Four Ladies of Hollywood at the end of Hollywood Blvd'
+                },
+                { 
+                    path: 'photos/Los_Angeles/Theatre1.jpg', 
+                    title: 'Chinese Theatre', 
+                    location: 'Los Angeles, USA', 
+                    description: 'TCL Chinese Theatre on Hollywood Blvd'
+                },
+                { 
+                    path: 'photos/Los_Angeles/Theatre2.jpg', 
+                    title: 'Chinese Theatre', 
+                    location: 'Los Angeles, USA', 
+                    description: 'Hand and foot prints in front of the TCL Chinese Theatre'
+                },
+                { 
+                    path: 'photos/Los_Angeles/BelAir.jpg', 
+                    title: 'Bel Air and Sunset Boulevard', 
+                    location: 'Los Angeles, USA', 
+                    description: 'The West Gate into Bel Air on Sunset Boulevard'
+                },
+                { 
+                    path: 'photos/Los_Angeles/Downtown.jpg', 
+                    title: 'Downtown LA', 
+                    location: 'Los Angeles, USA', 
+                    description: 'View of Downtown Los Angeles from Mulholland Drive in the Hollywood Hills'
+                },
+                { 
+                    path: 'photos/Los_Angeles/Universal.jpg', 
+                    title: 'Universal Studios', 
+                    location: 'Los Angeles, USA',
+                    description: 'View of Universal Studios Hollywood from Universal City Overlook on Mulholland Drive'
+                },
+                { 
+                    path: 'photos/Los_Angeles/Malibu.jpg', 
+                    title: 'Coast Road', 
+                    location: 'Los Angeles, USA',
+                    description: 'Pacific Coast Hwy, east of Malibu'
+                },
+                { 
+                    path: 'photos/Los_Angeles/Monica.jpg', 
+                    title: 'Santa Monica Beach and Pier', 
+                    location: 'Los Angeles, USA',
+                    description: 'Santa Monica Pier from Santa Monica Beach'
+                },
+                { 
+                    path: 'photos/Los_Angeles/Venice.jpg', 
+                    title: 'Venice Beach Boardwalk', 
+                    location: 'Los Angeles, USA',
+                    description: 'Venice Beach Boardwalk on Venice Beach'
+                },
+                { 
+                    path: 'photos/Los_Angeles/Petersen1.jpg', 
+                    title: 'Petersen Automotive Museum', 
+                    location: 'Los Angeles, USA',
+                    description: 'Petersen Automotive Museum, Wilshire Blvd'
+                },
+                { 
+                    path: 'photos/Los_Angeles/Petersen2.jpg', 
+                    title: 'Petersen Automotive Museum', 
+                    location: 'Los Angeles, USA',
+                    description: 'Delorean DMC-12 car from Back to the Future and the Ford Gran Torino from Starsky and Hutch'
+                },
+                { 
+                    path: 'photos/Los_Angeles/Petersen3.jpg', 
+                    title: 'Petersen Automotive Museum', 
+                    location: 'Los Angeles, USA',
+                    description: 'Blinged-up Low Rider'
+                },
+                { 
+                    path: 'photos/Los_Angeles/Air.jpg', 
+                    title: 'Los Angeles from above', 
+                    location: 'Los Angeles, USA',
+                    description: 'View of Terminal Island and Long Beach from the air'
+                }
+            ];
+
+            window.pagePhotos = photosForThisPage.map(photo => ({
+                src: S3_BASE_URL + photo.path,
+                title: photo.title,
+                location: photo.location,
+                description: photo.description
+            }));
+
+            if (window.loadPhotos) {
+                window.loadPhotos();
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="gallery-container">
+        <nav class="top-nav">
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <h1>Los Angeles</h1>
+        <h2>November 2024</h2>        
+        <div class="photo-grid">
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">&leftarrow; Back to Albums</a>
+    <footer class="gallery-footer">
+            <p></p>          
+            <div class="copyright">
+                &copy; 2026 Allan Family. All rights reserved.
+            </div>
+        </footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singapore Holiday Photos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const S3_BASE_URL = 'https://s3.eu-west-2.amazonaws.com/www.allanfamilyholidayphotos.com/';
+
+            const photosForThisPage = [
+                { 
+                    path: 'photos/Singapore/Marina_Bay.JPG', 
+                    title: 'Marina Bay Sands Hotel and ArtScience Museum', 
+                    location: 'Singapore', 
+                    description: 'Marina Bay Sands Hotel and ArtScience Museum (White building on right), Marina Bay, Singapore'
+                },
+                { 
+                    path: 'photos/Singapore/F1.JPG', 
+                    title: 'F1 Pit Lane', 
+                    location: 'Singapore', 
+                    description: 'Singapore Marina Bay F1 start/finish straight and pit lane with the Singapore Flyer ferris wheel'
+                },
+                { 
+                    path: 'photos/Singapore/Gardens.JPG', 
+                    title: 'Gardens by the Bay', 
+                    location: 'Singapore', 
+                    description: 'Supertree Grove vertical gardens in Gardens by the Bay taken from the public viewing deck at the top of Marina Bay Sands hotel'
+                },
+                { 
+                    path: 'photos/Singapore/Lightshow.JPG', 
+                    title: 'Light & Water Show', 
+                    location: 'Singapore', 
+                    description: 'Spectra - A Light & Water Show in Marina Bay'
+                },
+                { 
+                    path: 'photos/Singapore/Sentosa.JPG', 
+                    title: 'Sentosa Beach', 
+                    location: 'Singapore', 
+                    description: 'Siloso Beach, Sentosa Island'
+                },
+                { 
+                    path: 'photos/Singapore/Buddha1.JPG', 
+                    title: 'Buddha Tooth Relic Temple', 
+                    location: 'Singapore', 
+                    description: 'Buddha Tooth Relic Temple, Chinatown. Tang dynasty-style temple'
+                },
+                { 
+                    path: 'photos/Singapore/Buddha2.JPG', 
+                    title: 'Buddha Tooth Relic Temple', 
+                    location: 'Singapore', 
+                    description: 'Ceremony taking place inside the Buddha Tooth Relic Temple'
+                },
+                { 
+                    path: 'photos/Singapore/Hindu.JPG', 
+                    title: 'Sri Mariammam Temple', 
+                    location: 'Singapore', 
+                    description: 'Sri Mariamman Temple, Chinatown, the oldest Hindu temple in the city featuring a tower densely ornamented with deities'
+                }
+            ];
+
+            window.pagePhotos = photosForThisPage.map(photo => ({
+                src: S3_BASE_URL + photo.path,
+                title: photo.title,
+                location: photo.location,
+                description: photo.description
+            }));
+
+            if (window.loadPhotos) {
+                window.loadPhotos();
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="gallery-container">
+        <h1>Singapore</h1>
+        <h2>July 2019</h2>        
+        <div class="photo-grid">
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">&leftarrow; Back to Albums</a>
+</body>
+</html>

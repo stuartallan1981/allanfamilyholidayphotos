@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hong Kong and Macau Holiday Photos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Top Navigation Menu Styles matching index.html */
+        .top-nav {
+            display: flex;
+            justify-content: flex-end; /* Pushes the Contact link cleanly to the right */
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 500;
+            font-size: 1.05em;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const S3_BASE_URL = 'https://s3.eu-west-2.amazonaws.com/www.allanfamilyholidayphotos.com/';
+
+            const photosForThisPage = [
+                { 
+                    path: 'photos/Hong_Kong_Macau/HK.JPG', 
+                    title: 'Hong Kong Island', 
+                    location: 'Hong Kong', 
+                    description: 'Central Hong Kong with Kowloon in the distance'
+                },
+                { 
+                    path: 'photos/Hong_Kong_Macau/Victoria.JPG', 
+                    title: 'Hong Kong Island', 
+                    location: 'Hong Kong', 
+                    description: 'Central Hong Kong from Victoria Harbour'
+                },
+                { 
+                    path: 'photos/Hong_Kong_Macau/Cable1.JPG', 
+                    title: 'Ngong Ping 360 Skyrail', 
+                    location: 'Hong Kong', 
+                    description: 'View from Ngong Ping 360 Skyrail cable car, Lantau Island'
+                },
+                { 
+                    path: 'photos/Hong_Kong_Macau/Cable2.JPG', 
+                    title: 'Ngong Ping 360 Skyrail', 
+                    location: 'Hong Kong',
+                    description: 'View of Tung Chung from Ngong Ping 360 Skyrail cable car, Lantau Island'
+                },
+                { 
+                    path: 'photos/Hong_Kong_Macau/Ngong_Ping.JPG', 
+                    title: 'Ngong Ping Village', 
+                    location: 'Hong Kong', 
+                    description: 'Ngong Ping village, Lantau Island. Home of the Tian Tan Buddha'
+                },
+                { 
+                    path: 'photos/Hong_Kong_Macau/Gate.JPG', 
+                    title: 'Buddhist World in the South Archway', 
+                    location: 'Hong Kong', 
+                    description: 'Archway from Ngong Ping village to Ngong Ping Plaza and stairway to Tian Tang Buddha'
+                },
+                { 
+                    path: 'photos/Hong_Kong_Macau/Buddha1.JPG', 
+                    title: 'Tian Tan Buddha', 
+                    location: 'Hong Kong', 
+                    description: '260 steps up to the Tian Tang Buddha'
+                },
+                { 
+                    path: 'photos/Hong_Kong_Macau/Buddha2.JPG', 
+                    title: 'Tian Tan Buddha', 
+                    location: 'Hong Kong', 
+                    description: 'Tian Tang Buddha'
+                },
+                { 
+                    path: 'photos/Hong_Kong_Macau/Market.JPG', 
+                    title: 'Stanley Market', 
+                    location: 'Hong Kong', 
+                    description: 'Stanley Market, Hong Kong'
+                },
+                { 
+                    path: 'photos/Hong_Kong_Macau/Bridge.JPG', 
+                    title: 'Bridge from Hong Kong to Macau', 
+                    location: 'Hong Kong / Macau', 
+                    description: 'Hong Kong - Zhuhai - Macau Bridge'
+                },
+                { 
+                    path: 'photos/Hong_Kong_Macau/Macau.JPG', 
+                    title: 'View of Macau', 
+                    location: 'Macau', 
+                    description: 'View of Macau from the end of the Hong Kong - Zhuhai - Macau Bridge'
+                },
+                { 
+                    path: 'photos/Hong_Kong_Macau/Border.JPG', 
+                    title: 'Old border crossing station', 
+                    location: 'Macau', 
+                    description: 'Old border crossing station (Portas do Cerco) between Macau and China'
+                }
+            ];
+
+            window.pagePhotos = photosForThisPage.map(photo => ({
+                src: S3_BASE_URL + photo.path,
+                title: photo.title,
+                location: photo.location,
+                description: photo.description                
+            }));
+
+            if (window.loadPhotos) {
+                window.loadPhotos();
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="gallery-container">
+        <nav class="top-nav">
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <h1>Hong Kong & Macau</h1>
+        <h2>August 2019</h2>        
+        <div class="photo-grid">
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">&leftarrow; Back to Albums</a>
+    <footer class="gallery-footer">
+            <p></p>          
+            <div class="copyright">
+                &copy; 2026 Allan Family. All rights reserved.
+            </div>
+        </footer>
+</body>
+</html>

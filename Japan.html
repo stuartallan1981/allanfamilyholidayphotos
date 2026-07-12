@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japan Holiday Photos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Top Navigation Menu Styles matching index.html */
+        .top-nav {
+            display: flex;
+            justify-content: flex-end; /* Pushes the Contact link cleanly to the right */
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 500;
+            font-size: 1.05em;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const S3_BASE_URL = 'https://s3.eu-west-2.amazonaws.com/www.allanfamilyholidayphotos.com/';
+
+            const photosForThisPage = [
+                { 
+                    path: 'photos/Japan/Tokyo6.JPG', 
+                    title: 'Tokyo Skytree Tower', 
+                    location: 'Tokyo, Japan', 
+                    description: 'Tokyo Skytree Tower and SuperDry Head Office'
+                },
+                { 
+                    path: 'photos/Japan/Tokyo2.jpg', 
+                    title: 'Views of Tokyo', 
+                    location: 'Tokyo, Japan', 
+                    description: 'Views of Tokyo taken from the Tokyo Skytree Tower'
+                },
+                { 
+                    path: 'photos/Japan/Tokyo3.JPG', 
+                    title: 'Senso-ji Temple', 
+                    location: 'Tokyo, Japan', 
+                    description: 'The Senso-ji Temple, the oldest temple in Tokyo'
+                },
+                { 
+                    path: 'photos/Japan/Tokyo4.JPG', 
+                    title: 'Tokyo Shopping Street', 
+                    location: 'Tokyo, Japan', 
+                    description: 'Toyko shopping street near Senso-ji Temple'
+                },
+                { 
+                    path: 'photos/Japan/Tokyo5.JPG', 
+                    title: 'Geisha Girls', 
+                    location: 'Tokyo, Japan', 
+                    description: 'Sanja Matsuri Festival participants near the Senso-ji Temple'
+                },
+                { 
+                    path: 'photos/Japan/Crossing.jpg', 
+                    title: 'Shibuya Crossing', 
+                    location: 'Tokyo, Japan', 
+                    description: 'The worlds busiest pedestrian crossing'
+                },
+                { 
+                    path: 'photos/Japan/Fuji1.JPG', 
+                    title: 'Mt Fuji', 
+                    location: 'Shizuoka, Japan', 
+                    description: 'Mt Fuji'
+                },
+                { 
+                    path: 'photos/Japan/Bullet.jpg', 
+                    title: 'Two Bullet Trains', 
+                    location: 'Himeji, Japan', 
+                    description: 'Two bullet trains (Shinkansen) at Himeji station'
+                },
+                { 
+                    path: 'photos/Japan/Kyoto1.JPG', 
+                    title: 'Kyoto Tower', 
+                    location: 'Kyoto, Japan', 
+                    description: 'Kyoto Tower at night'
+                },
+                { 
+                    path: 'photos/Japan/Kyoto2.JPG', 
+                    title: 'Higashi Hongan-ji Temple', 
+                    location: 'Kyoto, Japan', 
+                    description: 'Higashi Hongan-ji Temple and northern Kyoto taken from Kyoto Tower'
+                },
+                { 
+                    path: 'photos/Japan/Kyoto3.JPG', 
+                    title: 'Goeido-mon Gate', 
+                    location: 'Kyoto, Japan', 
+                    description: 'Goeido-mon Gate into Higashi Hongan-ji Temple'
+                },
+                { 
+                    path: 'photos/Japan/Ninja.JPG', 
+                    title: 'Samurai and Ninja Models', 
+                    location: 'Kyoto, Japan', 
+                    description: 'Models of a Samurai Warrior and a Ninja in the Samurai Museum in Kyoto'
+                },
+                { 
+                    path: 'photos/Japan/Hiroshima1.JPG', 
+                    title: 'Atomic Bomb Dome', 
+                    location: 'Hiroshima, Japan', 
+                    description: 'The remains of the Industrial Promotion Hall which was destroyed by the atomic bomb dropped during WW2'
+                },
+                { 
+                    path: 'photos/Japan/Shrine.JPG', 
+                    title: 'Itsukushima Shrine Otorii Gate', 
+                    location: 'Hiroshima, Japan', 
+                    description: 'Itsukushima Shrine Otorii Gate in Miyajima on an island just south of Hiroshima'
+                },
+                { 
+                    path: 'photos/Japan/Matsumoto.JPG', 
+                    title: 'Matsumoto Castle', 
+                    location: 'Matsumoto, Japan', 
+                    description: 'Matsumoto Castle'
+                },
+                { 
+                    path: 'photos/Japan/Himeji.JPG', 
+                    title: 'Himeji Castle', 
+                    location: 'Himeji, Japan', 
+                    description: 'Himeji Castle'
+                },
+                { 
+                    path: 'photos/Japan/Rural.jpg', 
+                    title: 'Views of rural Japan', 
+                    location: 'Japan', 
+                    description: 'Views of rural Japan - paddy fields (top) and mountain village with Gassho houses (bottom)'
+                },
+                { 
+                    path: 'photos/Japan/Lodge.JPG', 
+                    title: 'Guesthouse Kazura', 
+                    location: 'Nanto, Japan', 
+                    description: 'Guesthouse Kazura, a traditional Gassho guesthouse'
+                },
+                { 
+                    path: 'photos/Japan/Bamboo.JPG', 
+                    title: 'Arashiyama Bamboo Forest', 
+                    location: 'Kyoto, Japan', 
+                    description: 'Arashiyama Bamboo Forest on the edge of Kyoto'
+                },
+                { 
+                    path: 'photos/Japan/Monkey.jpg', 
+                    title: 'Snow Monkeys', 
+                    location: 'Nagano, Japan', 
+                    description: 'Snow monkeys in the Jigokudani Monkey Park'
+                },
+                { 
+                    path: 'photos/Japan/Suzuka.jpg', 
+                    title: 'Suzuka F1 Circuit', 
+                    location: 'Suzuka, Japan', 
+                    description: 'The start/finish straight at Suzuka F1 Circuit'
+                },
+                { 
+                    path: 'photos/Japan/Glass.JPG', 
+                    title: 'Glass Museum', 
+                    location: 'Toyama, Japan', 
+                    description: 'Artwork in Toyama Glass Art Museum'
+                },
+                { 
+                    path: 'photos/Japan/Food.jpg', 
+                    title: 'Japanese Food', 
+                    location: 'Japan', 
+                    description: 'Traditional Japanese dining'
+                },
+                { 
+                    path: 'photos/Japan/Robot.JPG', 
+                    title: 'Robot Waiter', 
+                    location: 'Japan', 
+                    description: 'A robot waiter that delivers your food directly to your table'
+                }
+            ];
+
+            window.pagePhotos = photosForThisPage.map(photo => ({
+                src: S3_BASE_URL + photo.path,
+                title: photo.title,
+                location: photo.location,
+                description: photo.description                
+            }));
+
+            if (window.loadPhotos) {
+                window.loadPhotos();
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="gallery-container">
+        <nav class="top-nav">
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <h1>Japan</h1>
+        <h2>May - June 2025</h2>        
+        <div class="photo-grid">
+                    </div>
+    </div>
+
+    <a href="index.html" class="back-link">&leftarrow; Back to Albums</a>
+    <footer class="gallery-footer">
+            <p></p>          
+            <div class="copyright">
+                &copy; 2026 Allan Family. All rights reserved.
+            </div>
+        </footer>
+</body>
+</html>

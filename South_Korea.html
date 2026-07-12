@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South Korea Holiday Photos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Top Navigation Menu Styles matching index.html */
+        .top-nav {
+            display: flex;
+            justify-content: flex-end; /* Pushes the Contact link cleanly to the right */
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 500;
+            font-size: 1.05em;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const S3_BASE_URL = 'https://s3.eu-west-2.amazonaws.com/www.allanfamilyholidayphotos.com/';
+
+            const photosForThisPage = [
+                { 
+                    path: 'photos/South_Korea/Seoul1.JPG', 
+                    title: 'Northern Seoul', 
+                    location: 'Seoul, South Korea', 
+                    description: 'View of North East Seoul taken from the base of North Seoul Tower'
+                },
+                { 
+                    path: 'photos/South_Korea/Seoul2.JPG', 
+                    title: 'South East Seoul', 
+                    location: 'Seoul, South Korea', 
+                    description: 'View of South East Seoul and the Han River'
+                },
+                { 
+                    path: 'photos/South_Korea/Seoul3.JPG', 
+                    title: 'Northern Seoul', 
+                    location: 'Seoul, South Korea', 
+                    description: 'View of Northern Seoul taken from the top of North Seoul Tower at dusk'
+                },
+                { 
+                    path: 'photos/South_Korea/NSTower.JPG', 
+                    title: 'North Seoul Tower', 
+                    location: 'Seoul, South Korea', 
+                    description: 'An iconic tower offering panoramic views of the city, reached via the Namsan Cable Car'
+                },
+                { 
+                    path: 'photos/South_Korea/Gateway.JPG', 
+                    title: 'Heunginjimun Gate (Dongdaemun)', 
+                    location: 'Seoul, South Korea', 
+                    description: 'Heunginjimun Gate (Dongdaemun), one of the old city gates built into the city walls that surrounded the ancient city of Seoul'
+                },
+                { 
+                    path: 'photos/South_Korea/Palace1.JPG', 
+                    title: 'Gateway into Changgyeonggung Palace', 
+                    location: 'Seoul, South Korea', 
+                    description: 'Gateway into Changgyeonggung Palace, part of a complex of traditional Korean palaces and shrines'
+                },
+                { 
+                    path: 'photos/South_Korea/Palace2.JPG', 
+                    title: 'Interior of Changgyeonggung Palace', 
+                    location: 'Seoul, South Korea', 
+                    description: 'Interior of Changgyeonggung Palace, part of a complex of traditional Korean palaces and shrines'
+                },
+                { 
+                    path: 'photos/South_Korea/Memorial.JPG', 
+                    title: 'War Memorial of Korea', 
+                    location: 'Seoul, South Korea', 
+                    description: 'War Memorial of Korea charting Korean conflict with indoor and outdoor displays of vehicles, planes and other military equipment'
+                },
+                { 
+                    path: 'photos/South_Korea/War1.JPG', 
+                    title: 'Statue of Brothers', 
+                    location: 'Seoul, South Korea', 
+                    description: 'Statue depicting the division of the Korean peninsula into North Korea and South Korea'
+                },
+                { 
+                    path: 'photos/South_Korea/DMZ.JPG', 
+                    title: 'DMZ Sign', 
+                    location: 'Demilitarized Zone, South Korea', 
+                    description: 'DMZ Sign at The Third Tunnel, one of the tunnels between North and South Korea constructed to allow North Koreans to infiltrate into the South'
+                },
+                { 
+                    path: 'photos/South_Korea/Bridge.JPG', 
+                    title: 'Bridge of Freedom', 
+                    location: 'Demilitarized Zone, South Korea', 
+                    description: 'Bridge of Freedom at Imjingak Peace Park in the DMZ'
+                },
+                { 
+                    path: 'photos/South_Korea/Toll.JPG', 
+                    title: 'Toll booth between South and North Korea', 
+                    location: 'Demilitarized Zone, South Korea', 
+                    description: 'Toll booth built for the Seoul Olympics to allow access for the North Korean team. No longer in use'
+                }
+            ];
+
+            window.pagePhotos = photosForThisPage.map(photo => ({
+                src: S3_BASE_URL + photo.path,
+                title: photo.title,
+                location: photo.location,
+                description: photo.description                
+            }));
+
+            if (window.loadPhotos) {
+                window.loadPhotos();
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="gallery-container">
+        <nav class="top-nav">
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <h1>South Korea</h1>
+        <h2>June 2025</h2>        
+        <div class="photo-grid">
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">&leftarrow; Back to Albums</a>
+    <footer class="gallery-footer">
+            <p></p>          
+            <div class="copyright">
+                &copy; 2026 Allan Family. All rights reserved.
+            </div>
+        </footer>
+</body>
+</html>

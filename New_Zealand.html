@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Zealand Holiday Photos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Top Navigation Menu Styles matching index.html */
+        .top-nav {
+            display: flex;
+            justify-content: flex-end; /* Pushes the Contact link cleanly to the right */
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 500;
+            font-size: 1.05em;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const S3_BASE_URL = 'https://s3.eu-west-2.amazonaws.com/www.allanfamilyholidayphotos.com/';
+
+            const photosForThisPage = [
+                { 
+                    path: 'photos/New_Zealand/Auckland.jpg', 
+                    title: 'Auckland', 
+                    location: 'Auckland, New Zealand', 
+                    description: 'Three views of Auckland City Centre from Sky Tower and one of the Sky Tower'
+                },
+                { 
+                    path: 'photos/New_Zealand/Eden.jpg', 
+                    title: 'Eden Park', 
+                    location: 'Auckland, New Zealand', 
+                    description: 'Eden Park rugby ground'
+                },
+                { 
+                    path: 'photos/New_Zealand/TreeHill.jpg', 
+                    title: 'One Tree Hill', 
+                    location: 'Auckland, New Zealand', 
+                    description: 'One Tree Hill and Monument'
+                },
+                { 
+                    path: 'photos/New_Zealand/Howick.jpg', 
+                    title: 'Howick Historical Village', 
+                    location: 'Auckland, New Zealand', 
+                    description: 'Howick Historical Village, a recreated settler town with colonial schools and stores'
+                },
+                { 
+                    path: 'photos/New_Zealand/Hobbit1.jpg', 
+                    title: 'Bag End, Hobbiton', 
+                    location: 'Hobbiton Film Set, New Zealand', 
+                    description: 'Bag End, the home of Bilbo Baggins from the Lord of the Rings and the Hobbit series'
+                },
+                { 
+                    path: 'photos/New_Zealand/Hobbit2.jpg', 
+                    title: 'Hobbit Holes, Hobbiton', 
+                    location: 'Hobbiton Film Set, New Zealand', 
+                    description: 'Hobbit Holes at Hobbiton'
+                },
+                { 
+                    path: 'photos/New_Zealand/Hobbit3.jpg', 
+                    title: 'Frog Pond and Party Field & Party Tree', 
+                    location: 'Hobbiton Film Set, New Zealand', 
+                    description: 'The Frog Pond (Top) and Party Field & Party Tree (Bottom) in Hobbiton'
+                },
+                { 
+                    path: 'photos/New_Zealand/Hobbit4.jpg', 
+                    title: 'Inside a Hobbit Hole', 
+                    location: 'Hobbiton Film Set, New Zealand', 
+                    description: 'Interior of a Hobbit Hole'
+                },
+                { 
+                    path: 'photos/New_Zealand/Hobbit5.jpg', 
+                    title: 'Water Mill and Green Dragon', 
+                    location: 'Hobbiton Film Set, New Zealand', 
+                    description: 'The Water Mill & Bridge (Top) and The Green Dragon Inn (Bottom)'
+                },
+                { 
+                    path: 'photos/New_Zealand/Doom.jpg', 
+                    title: 'Tongariro National Park', 
+                    location: 'New Zealand', 
+                    description: 'Mount Ngauruhoe (Mt Doom from the Lord of the Rings) in Tongariro National park'
+                },
+                { 
+                    path: 'photos/New_Zealand/Arch.jpg', 
+                    title: 'Maori Memorial Archway', 
+                    location: 'Rotorua, New Zealand', 
+                    description: 'Memorial Archway leading to Whakaewarewa, the Living Maori Village'
+                },
+                { 
+                    path: 'photos/New_Zealand/Geothermal.jpg', 
+                    title: 'Pohutu Geyser', 
+                    location: 'Rotorua, New Zealand', 
+                    description: 'Pohutu Geyser - the largest geyser in New Zealand - at the Living Maori Village'
+                },
+                { 
+                    path: 'photos/New_Zealand/Longest.jpg', 
+                    title: 'Taumatawhakatangihangakoauauotamateapokaiwhenuakitanatahu', 
+                    location: 'New Zealand', 
+                    description: 'Signpost to the place with the longest name in the world'
+                },
+                { 
+                    path: 'photos/New_Zealand/Stonehenge.jpg', 
+                    title: 'Stonehenge, Aotearoa', 
+                    location: 'New Zealand', 
+                    description: 'New Zealands answer to Stonehenge'
+                },
+                { 
+                    path: 'photos/New_Zealand/Wellington1.jpg', 
+                    title: 'Wellington Sign', 
+                    location: 'Wellington, New Zealand', 
+                    description: 'Wellington Sign, between the marina and the Museum of New Zealand Te Papa Tongareawa'
+                },
+                { 
+                    path: 'photos/New_Zealand/Wellington2.jpg', 
+                    title: 'Wellington Cable Car', 
+                    location: 'Wellington, New Zealand', 
+                    description: 'Wellington Cable Car and view of the city'
+                },
+                { 
+                    path: 'photos/New_Zealand/Christchurch.jpg', 
+                    title: 'Tram in the centre of Christchurch', 
+                    location: 'Christchurch, New Zealand', 
+                    description: 'Tram on New Regent Street Precinct in the centre of Christchurch'
+                },
+                { 
+                    path: 'photos/New_Zealand/Hagglunds.jpg', 
+                    title: 'Hagglunds Antarctic Vehicle', 
+                    location: 'Christchurch Airport, New Zealand', 
+                    description: 'Hagglunds Antarctic vehicle at the International Antarctic Centre'
+                },
+                { 
+                    path: 'photos/New_Zealand/IAC.jpg', 
+                    title: 'International Antarctic Centre', 
+                    location: 'Christchurch Airport, New Zealand', 
+                    description: 'International Antarctic Centre'
+                },
+                { 
+                    path: 'photos/New_Zealand/Alps.jpg', 
+                    title: 'Southern Alps', 
+                    location: 'South Island, New Zealand', 
+                    description: 'View of part of the Southern Alps'
+                },
+                { 
+                    path: 'photos/New_Zealand/Helicopter.jpg', 
+                    title: 'Glacier Tour Helicopter', 
+                    location: 'Franz Josef, New Zealand', 
+                    description: 'Glacier Tour Helicopter on Middleton Ice Field, on the slopes of Elie De Beaumont mountain'
+                },
+                { 
+                    path: 'photos/New_Zealand/Glacier.jpg', 
+                    title: 'Views of Franz Josef and Tasman Glaciers', 
+                    location: 'Franz Josef, New Zealand', 
+                    description: 'Views of Franz Josef and Tasman Glaciers from the helicopter'
+                },
+                { 
+                    path: 'photos/New_Zealand/Bungee.jpg', 
+                    title: 'Kawarau Gorge Suspension Bridge and Bungee Jump', 
+                    location: 'Near Queenstown, New Zealand', 
+                    description: 'The birthplace of bungee jumping'
+                },
+                { 
+                    path: 'photos/New_Zealand/Queenstown.jpg', 
+                    title: 'Queenstown', 
+                    location: 'Queenstown, New Zealand', 
+                    description: 'A view looking down over Queenstown'
+                },
+                { 
+                    path: 'photos/New_Zealand/Signpost.jpg', 
+                    title: 'Signpost at the southern point on mainland New Zealand', 
+                    location: 'Bluff, New Zealand', 
+                    description: 'A multi direction signpost a the southern most point of mainland New Zealand (two views)'
+                },
+                { 
+                    path: 'photos/New_Zealand/Niagara.jpg', 
+                    title: 'Niagara Falls, New Zealand', 
+                    location: 'Niagara, New Zealand', 
+                    description: 'A tongue-in-cheek version of the American Niagara Falls'
+                },
+                { 
+                    path: 'photos/New_Zealand/Dunedin.jpg', 
+                    title: 'Dunedin Railway Station', 
+                    location: 'Dunedin, New Zealand', 
+                    description: 'Dunedin Railway Station, where the trains run 2 or 3 times a month'
+                },
+                { 
+                    path: 'photos/New_Zealand/Penguins.jpg', 
+                    title: 'Little Blue Penguins', 
+                    location: 'Timaru, New Zealand', 
+                    description: 'Little Blue Penguins coming ashore to rest for the night'
+                },
+            ];
+
+            window.pagePhotos = photosForThisPage.map(photo => ({
+                src: S3_BASE_URL + photo.path,
+                title: photo.title,
+                location: photo.location,
+                description: photo.description
+            }));
+
+            if (window.loadPhotos) {
+                window.loadPhotos();
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="gallery-container">
+        <nav class="top-nav">
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <h1>New Zealand</h1>
+        <h2>October 2024</h2>        
+        <div class="photo-grid">
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">&leftarrow; Back to Albums</a>
+    <footer class="gallery-footer">
+            <p></p>          
+            <div class="copyright">
+                &copy; 2026 Allan Family. All rights reserved.
+            </div>
+        </footer>
+</body>
+</html>

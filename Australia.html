@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Australia Holiday Photos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Top Navigation Menu Styles matching index.html */
+        .top-nav {
+            display: flex;
+            justify-content: flex-end; /* Pushes the Contact link cleanly to the right */
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 500;
+            font-size: 1.05em;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>    
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const S3_BASE_URL = 'https://s3.eu-west-2.amazonaws.com/www.allanfamilyholidayphotos.com/';
+
+            const photosForThisPage = [
+                { 
+                    path: 'photos/Australia/Perth.JPG', 
+                    title: 'View of Perth', 
+                    location: 'Perth, Australia', 
+                    description: 'View of Perth from Kings Park'
+                },
+                { 
+                    path: 'photos/Australia/Freemantle.jpg', 
+                    title: 'Freemantle Prison', 
+                    location: 'Freemantle, Australia', 
+                    description: 'Interior and exterior views of Freemantle Prison, the largest convict-built structure in Western Australia, built to house 1000 men'
+                },
+                { 
+                    path: 'photos/Australia/Railway.jpg', 
+                    title: 'Kuranda Railway', 
+                    location: 'Kuranda, Australia', 
+                    description: 'Railway linking rainforest mountain village of Karunda with the outskirts of Cairns'
+                },
+                { 
+                    path: 'photos/Australia/Diving.JPG', 
+                    title: 'Scuba Diving on the Great Barrier Reef', 
+                    location: 'Great Barrier Reef, Australia', 
+                    description: 'Scuba diving on the Great Barrier Reef off the coast of Cairns'
+                },
+                { 
+                    path: 'photos/Australia/LavaTube.JPG', 
+                    title: 'Undara Lava Tubes', 
+                    location: 'Australia', 
+                    description: 'Caves created by lava flowing through soft rock from a now extinct volcano'
+                },
+                { 
+                    path: 'photos/Australia/RoadTrain.JPG', 
+                    title: '3-trailer road train', 
+                    location: 'Australia', 
+                    description: 'A typical commercial vehicle found in the outback'
+                },
+                { 
+                    path: 'photos/Australia/Outback.JPG', 
+                    title: 'Outback Town', 
+                    location: 'Ravenshoe, Australia', 
+                    description: 'A typical small outback town'
+                },
+                { 
+                    path: 'photos/Australia/Koala.JPG', 
+                    title: 'Koala Bears in the wild', 
+                    location: 'Magnetic Island, Australia', 
+                    description: 'Wild koalas in their natural habitat'
+                },
+                { 
+                    path: 'photos/Australia/Kookaburra.JPG', 
+                    title: 'Kookaburra', 
+                    location: 'Australia', 
+                    description: 'Bird native to Australia and New Guinea'
+                },
+                { 
+                    path: 'photos/Australia/Bus.JPG', 
+                    title: 'Offroad Bus', 
+                    location: 'Fraser Island, Australia', 
+                    description: 'An off-road bus tour on Fraser Island, the largest sand island in the world'
+                },
+                { 
+                    path: 'photos/Australia/BusRoute.JPG', 
+                    title: 'The bus route on Fraser Island', 
+                    location: 'Fraser Island, Australia', 
+                    description: 'Part of the track on the bus tour route on Fraser Island - deep sand'
+                },
+                { 
+                    path: 'photos/Australia/Plane.JPG', 
+                    title: 'Fraser Island sightseeing plane', 
+                    location: 'Fraser Island, Australia', 
+                    description: '6-seater sightseeing plane the takes off and lands on 75 Mile Beach'
+                },
+                { 
+                    path: 'photos/Australia/75MileBeach.jpg', 
+                    title: '75 Mile Beach', 
+                    location: 'Fraser Island, Australia', 
+                    description: 'Views from sightseeing plane of 75 Mile Beach and the SS Maheno shipwreck, the remains of an ocean liner'
+                },
+                { 
+                    path: 'photos/Australia/Lake.JPG', 
+                    title: 'Lake McKenzie', 
+                    location: 'Fraser Island, Australia', 
+                    description: 'A pristine freshwater lake filled exclusively by rainwater with no connections to streams or the ocean'
+                },
+                { 
+                    path: 'photos/Australia/Brisbane.JPG', 
+                    title: 'View of Brisbane', 
+                    location: 'Brisbane, Australia', 
+                    description: 'View of Brisbane'
+                },
+                { 
+                    path: 'photos/Australia/Offroad.JPG', 
+                    title: 'Outback road', 
+                    location: 'Australia', 
+                    description: 'One of thousands of loose gravel roads regularly found in the outback'
+                },
+                { 
+                    path: 'photos/Australia/Snowy.JPG', 
+                    title: 'Village in the Snowy Mountains', 
+                    location: 'Cabramurra, Australia', 
+                    description: 'Cabramurra, the highest town in Australia'
+                },
+                { 
+                    path: 'photos/Australia/Canberra1.jpg', 
+                    title: 'Views of Canberra', 
+                    location: 'Canberra, Australia', 
+                    description: 'Views of Canberra from Telstra Tower on Black Mountain'
+                },
+                { 
+                    path: 'photos/Australia/Canberra2.jpg', 
+                    title: 'Views of Canberra', 
+                    location: 'Canberra, Australia', 
+                    description: 'View along Anzac Parade from Australian War Memorial towards Capital Hill and the parliament (top photo) and similar view from Mount Ainslie Lookout with the War Memorial visible at the bottom'
+                },
+                { 
+                    path: 'photos/Australia/Sydney1.JPG', 
+                    title: 'Sydney Opera House', 
+                    location: 'Sydney, Australia', 
+                    description: 'Sydney Opera House from the boardwalk alongside the Royal Botanic Garden'
+                },
+                { 
+                    path: 'photos/Australia/Sydney2.JPG', 
+                    title: 'Circular Quay, Sydney Harbour and Opera House', 
+                    location: 'Sydney, Australia', 
+                    description: 'View of Circular Quay the Opera House from the Harbour Bridge'
+                },
+                { 
+                    path: 'photos/Australia/Sydney3.JPG', 
+                    title: 'Circular Quay, Sydney Harbour', 
+                    location: 'Sydney, Australia', 
+                    description: 'Central Sydney from the Harbour Bridge'
+                },
+                { 
+                    path: 'photos/Australia/Sydney4.JPG', 
+                    title: 'Sydney Harbour Bridge', 
+                    location: 'Sydney, Australia', 
+                    description: 'Sydney Harbour Bridge'
+                },
+                { 
+                    path: 'photos/Australia/Bondi.jpg', 
+                    title: 'Bondi Beach', 
+                    location: 'Bondi, Australia', 
+                    description: 'Bondi Beach, the most famous surfing destination in Australia'
+                },
+            ];
+
+            window.pagePhotos = photosForThisPage.map(photo => ({
+                src: S3_BASE_URL + photo.path,
+                title: photo.title,
+                location: photo.location,
+                description: photo.description
+            }));
+
+            if (window.loadPhotos) {
+                window.loadPhotos();
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="gallery-container">
+        <nav class="top-nav">
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <h1>Australia</h1>
+        <h2>July - August 2019</h2>
+        <div class="photo-grid">
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">&leftarrow; Back to Albums</a>
+    <footer class="gallery-footer">
+            <p></p>          
+            <div class="copyright">
+                &copy; 2026 Allan Family. All rights reserved.
+            </div>
+        </footer>
+</body>
+</html>
