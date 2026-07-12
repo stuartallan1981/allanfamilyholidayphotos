@@ -1,4 +1,4 @@
-name: Deploy Portfolio to S3 c
+name: Deploy Portfolio to S3
  
 on:
   push:
