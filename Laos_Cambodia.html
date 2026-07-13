@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laos and Cambodia Holiday Photos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Top Navigation Menu Styles matching index.html */
+        .top-nav {
+            display: flex;
+            justify-content: flex-end; /* Pushes the Contact link cleanly to the right */
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 500;
+            font-size: 1.05em;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const S3_BASE_URL = 'https://s3.eu-west-2.amazonaws.com/www.allanfamilyholidayphotos.com/';
+
+            const photosForThisPage = [
+                { 
+                    path: 'photos/Laos_Cambodia/???.JPG', 
+                    title: '???', 
+                    location: '???', 
+                    description: '???'
+                },
+                { 
+                    path: 'photos/Laos_Cambodia/???.JPG', 
+                    title: '???', 
+                    location: '???', 
+                    description: '???'
+                },
+                { 
+                    path: 'photos/Laos_Cambodia/???.JPG', 
+                    title: '???', 
+                    location: '???', 
+                    description: '???'
+                },
+                { 
+                    path: 'photos/Laos_Cambodia/???.JPG', 
+                    title: '???', 
+                    location: '???', 
+                    description: '???'
+                }
+            ];
+
+            window.pagePhotos = photosForThisPage.map(photo => ({
+                src: S3_BASE_URL + photo.path,
+                title: photo.title,
+                location: photo.location,
+                description: photo.description                
+            }));
+
+            if (window.loadPhotos) {
+                window.loadPhotos();
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="gallery-container">
+        <nav class="top-nav">
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <h1>Laos & Cambodia</h1>
+        <h2>March 2027</h2>        
+        <div class="photo-grid">
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">&leftarrow; Back to Albums</a>
+    <footer class="gallery-footer">
+            <p></p>          
+            <div class="copyright">
+                &copy; 2027 Allan Family. All rights reserved.
+            </div>
+        </footer>
+</body>
+</html>
